@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
+    "build": "webpack --config=Scripts/config/webpack.prod.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "author": "Abhishek Shukla",
   "license": "ISC",
