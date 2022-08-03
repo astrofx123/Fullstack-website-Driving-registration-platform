@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Individual Test Taker Page</title>
+  <!-- External CSS Goes Here -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Header goes here -->
+    <%-include('layouts/header')-%>
+      <!-- Navigation goes here -->
+      <%-include('layouts/navbar')-%>
+
+        <!-- Main Content Goes Here -->
+        <main>
+          <!-- Banner Image -->
+          <section id="test_taker_image_container">
+              <img src="<%=currentTestTaker.Image1%>" alt="Test_Taker_Image" class="test_taker_image">
+          </section>
+            <section class="test_taker_details">
+                <!-- Driver Personal Details -->
+                <h3 id="test_taker_heading">Personal Details</h3>
+                <section class="personal_driver_details">
+                    <p><span class="driver_name">First Name:</span><%=currentTestTaker.FirstName%></p>
+                    <p><span class="driver_name">Last Name:</span><%=currentTestTaker.LastName%></p>
+                    <p><span class="driver_license">License Number:</span><%=currentTestTaker.LicenceNumber%></p>
+                </section>
+                <!-- Driver Vehicle Details -->
+                <h3 id="test_taker_heading">Vehicle Details</h3>
+                <section class="driver_vehicle_details">
+                    <p><span class="driver_vehile">Brand:</span><%=currentTestTaker.Brand%></p>
+                    <p><span class="driver_vehile">Year:</span><%=currentTestTaker.Year%></p>
+                    <p><span class="driver_vehile">Plate Number:</span><%=currentTestTaker.PlateNumber%></p>
+                </section>
+            </section>
+            <section class="test_taker_result">
+                
+                <h3 id="test_taker_result_heading">Driver's Result</h3>
+                <section class="test_taker_result_container">
+                    <!-- Driver's Result Form -->
+                    <form action='/driverResult/<%=currentTestTaker._id%>' method="post" id="driverResultForm">
+                        <p style="font-weight: bold;letter-spacing: .7px;margin: 10px;">Please select driver's result:</p>
+                        <div id="radioButtons">
+                            <input type="radio" name="result" id="pass" value="PASS" checked>
+                            <label for="pass">Pass</label>
+                            <input type="radio" name="result" id="fail" value="Fail">
+                            <label for="fail">Fail</label>
+                        </div>
+                        <p style="font-weight: bold;letter-spacing: .7px;margin: 10px;">Provide your comment:</p>
+                        <textarea rows="4" cols="40" id="comment" name="comment"></textarea>
+                        <input type="submit" value="Upload Result" id="upload_result">
+                    </form>
+                </section>
+            </section>
+        </main>
+
+        <!-- Footer goes here -->
+        <%-include('layouts/footer')-%>
+  </div>
+  <!-- External Javascript Goes Here -->
+  <%-include('layouts/javascript')-%>
+</body>
+
+</html>

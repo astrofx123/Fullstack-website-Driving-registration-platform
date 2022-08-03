@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- External CSS Goes Here -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Header goes here -->
+        <%-include('layouts/header')-%>
+            <!-- Navigation goes here -->
+            <%-include('layouts/navbar')-%>
+
+                <!-- Main Content Goes Here -->
+                <main>
+                    <!-- Banner Image -->
+                    <section id="banner">
+                        <img src="assets/img/Main_Drive.jpg" alt="banner" id="login_image" class="general_image">
+                    </section>
+                    <% if(errors != null && errors.length > 0){ %>
+                        <ul class="list-group"></ul>
+                        <% for (var i = 0; i < errors.length; i++) { %>
+                        <li class="list-group-danger"><%= errors[i] %></li>
+                        <% } %>
+                        </ul>
+                    <% } %>
+                        <!-- Sign Up Form -->
+                        <form action="/signUp" method="post" id="sign_up_form">
+                            <!-- SIGN UP PAGE -->
+                            <div class="container">
+                                <label for="userName"><b>Username</b></label>
+                                <input type="text" placeholder="Enter Username" name="uname" id="username_sign_up" value="<%=username %>">
+
+                                <label for="current_password"><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="password" class="password_sign_up" value="<%=password %>">
+
+                                <label for="psw_repeat"><b>Repeat Password</b></label>
+                                <input type="password" placeholder="Repeat Password" name="psw_repeat" class="repeat_password_sign_up" required>
+
+                                <!-- User Type -->
+                                <lable for="user_type"><b>Select User</b></lable>
+                                <select name="user_type">
+                                    <option value="Driver" selected>Driver</option>
+                                    <option value="Examiner">Examiner</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+
+                                <button type="submit" id="sign_up_latest">Sign Up</button>
+
+                            </div>
+                        </form>
+                </main>
+
+                <!-- Footer goes here -->
+                <%-include('layouts/footer')-%>
+    </div>
+    <!-- External Javascript Goes Here -->
+    <%-include('layouts/javascript')-%>
+</body>
+
+</html>

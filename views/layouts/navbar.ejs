@@ -1,0 +1,23 @@
+<nav>
+    <ul>
+        <li><a href="/">Dashboard</a></li>
+        <% if(checkUserID && checkUserType) { %>
+            <% if(checkUserType == 'Driver') { %>
+                <li><a href="/g2">G2 Test</a></li>
+                <li><a href="/g">G Test</a></li>
+            <% } %>
+        <%} else {%>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signUp">Sign Up</a></li>
+        <% } %>
+        <% if(checkUserType == 'Admin') { %>
+            <li><a href="/appointment">Appointment</a></li>
+        <% } %>
+        <% if(checkUserType == 'Examiner') { %>
+            <li><a href="/examiner">Examiner</a></li>
+        <% } %>
+        <% if(checkUserID && checkUserType) { %>
+            <li><a href="/logout">Logout</a></li>
+        <% } %>
+    </ul>
+</nav>

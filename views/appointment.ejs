@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Page</title>
+  <!-- External CSS Goes Here -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Header goes here -->
+    <%-include('layouts/header')-%>
+      <!-- Navigation goes here -->
+      <%-include('layouts/navbar')-%>
+
+        <!-- Main Content Goes Here -->
+        <main>
+          <!-- Banner Image -->
+          <section id="banner">
+            <!-- https://pixabay.com/images/id-1763587/ -->
+            <img src="assets/img/Appointment_Page.png" alt="banner" id="appointment_img" class="general_image">
+          </section>
+          <%if(err){%>
+            <h3 class="appointment_error_heading"><%=err%><span style='font-size:30px;'></span></h3>
+          <%}%>
+          <%if(message){%>
+            <h3 class="appointment_success_heading"><%=message%><span style='font-size:30px;'></span></h3>
+          <%}%>
+          <h3 class="appointment_form_heading">Create Appointments</h3>
+          <!-- Appointment Form -->
+          <form action="/timeSlots" method="POST" id="appointment_form">
+            <!-- Appointment PAGE -->
+            <div class="container">
+  
+                <label for="date"><b>Please select date: </b></label>
+                <input type="date" name="date" id="appointmentDate" required>
+              
+              <label for="time"><h3>Please select the time slots:</h3></label>
+              <select name="time" id="time">
+                <option value="9:00AM">9:00 AM</option>
+                <option value="10:00AM">10:00 AM</option>
+              </select>
+            
+              <button type="submit" id="create_appointment">Create Appointment</button>
+            </div>
+
+          </form>
+        </main>
+
+        <!-- Footer goes here -->
+        <%-include('layouts/footer')-%>
+  </div>
+  <!-- External Javascript Goes Here -->
+  <%-include('layouts/javascript')-%>
+</body>
+
+</html>

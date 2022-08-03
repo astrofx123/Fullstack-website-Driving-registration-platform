@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examiner Page</title>
+  <!-- External CSS Goes Here -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Header goes here -->
+    <%-include('layouts/header')-%>
+      <!-- Navigation goes here -->
+      <%-include('layouts/navbar')-%>
+
+        <!-- Main Content Goes Here -->
+        <main>
+          <!-- Banner Image -->
+          <section id="banner">
+            <img src="/assets/img/exam_img.jpg" alt="banner" id="exam_image" class="general_image">
+          </section>
+  
+          <h2 id="examiner_heading">Driver ready for the drive Test</h2>
+            <section class="testTakersContainer">
+
+             <%if(testTakers){%>
+              <% for(var i=0; i<testTakers.length; i++){ %>
+                <% if(testTakers[i].userType == 'Driver'){%>
+                  <!-- Individual Test Takers -->
+                  <div class="testTaker">
+                    <a href="/displayTestTaker/<%=testTakers[i]._id%>">
+                      <h3 class="testTakerName">
+                        <%=testTakers[i].userName%>
+                      </h3>
+                    </a>
+                    <p>
+                      <span class="testHeading">Test:</span> <span class="testType">
+                        <%=testTakers[i].testType%>
+                      </span>
+                    </p>
+                    <p class="testDate">
+                      <span class="testHeading">Test Date:</span>
+                        <%=testTakers[i].appointmentId.date%>
+                    </p>
+                  </div>
+                <% } %>
+              <% } %>
+             <%}%>                
+
+            </section>
+        </main>
+
+        <!-- Footer goes here -->
+        <%-include('layouts/footer')-%>
+  </div>
+  <!-- External Javascript Goes Here -->
+  <%-include('layouts/javascript')-%>
+</body>
+
+</html>

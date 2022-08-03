@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <!-- External CSS Goes Here -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Header goes here -->
+    <%-include('layouts/header')-%>
+      <!-- Navigation goes here -->
+      <%-include('layouts/navbar')-%>
+
+      <% if(error == 'wrong password') {%>
+        <script>
+          alert('Wrong password..');
+          window.location.href = "/login";
+        </script>
+      <% } %>
+      <% if(error == 'do_signup') {%>
+        <script>
+          alert('Wrong User Name\nPlease sign up first ..');
+          window.location.href = "/signUp";
+        </script>
+      <% } %>
+        <!-- Main Content Goes Here -->
+        <main>
+          <!-- Banner Image -->
+          <section id="banner">
+            <img src="assets/img/Main_Drive.jpg" alt="banner" id="login_image" class="general_image">
+          </section>
+  
+          <!-- Login Form -->
+          <form action="/users/login" method="POST" id="login_form">
+
+            <!-- LOGIN PAGE -->
+            <div class="container">
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="uname" required>
+
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="password" required>
+
+              <button type="submit">Login</button>
+              <span style="text-align: center;display: inline-block;width: 100%;">or</span>
+              <!-- Sign Up Button -->
+              <button type="submit" id="sign_up">Sign Up</button>
+            </div>
+
+          </form>
+        </main>
+
+        <!-- Footer goes here -->
+        <%-include('layouts/footer')-%>
+  </div>
+  <!-- External Javascript Goes Here -->
+  <%-include('layouts/javascript')-%>
+</body>
+</html>

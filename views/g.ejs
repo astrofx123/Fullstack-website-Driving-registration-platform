@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>G Test Page</title>
+  <!-- External CSS Goes Here -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <!-- Header goes here -->
+    <%-include('layouts/header')-%>
+      <!-- Navigation goes here -->
+      <%-include('layouts/navbar')-%>
+
+        <!-- Main Content Goes Here -->
+        <main>
+          <!-- Banner Image -->
+          <section id="banner">
+            <img src="assets/img/G_Page.jpg" alt="banner" id="login_image" class="general_image">
+          </section>
+
+          <!-- MongoDB Data -->
+          <% if(getUserG === null){ %>
+            <script>
+              alert('No user found');
+              window.location.href = "/g2";
+            </script>
+          <% } else { %>
+          <% if(getUserG!== undefined) { %>
+
+             <!-- Display Result to the driver -->
+          <%if(getUserG.testResult && getUserG.testType == "G"){%>
+            <%if(getUserG.testResult == "PASS"){%>
+              <h4 class="testResultPass">Congratulation ! you have passed G test</h4>
+            <%}%>
+            <%if(getUserG.testResult == "Faile"){%>
+              <h4 class="testResultFail"><%=getUserG.testResult%></h4>
+            <%}%>
+            <!-- Display Comment given by the examiner to the driver -->
+            <%if(getUserG.examinerComment){%>
+              <div class="examinerComment">
+                <h4>Examiner comment:</h4><span><%=getUserG.examinerComment%></span>
+              </div>
+            <%}%>
+          <% } else { %> 
+            <form action="/update" method="POST" id="g_follow_up_form" style="padding: 10px;" name="myGForm">
+
+            <div class="container">
+              <!-- Appointment Details -->
+              <h3 class="g2_form_heading">Select date & time to book your appointment</h3>
+
+              <%if(userSelectedDateGPage){%>
+                <label for="userSelectedDateG"><b>Please select date:</b></label>
+                <input type="date" id="userSelectedDateG" name="userSelectedDateG" value="<%=userSelectedDateGPage%>" required>
+              <%}else{%>
+                <label for="userSelectedDateG"><b>Please select date:</b></label>
+                <input type="date" id="userSelectedDateG" name="userSelectedDateG" required>
+              <%}%>
+              
+                <!-- Data will be populated from the database using for loop -->
+                <!-- <option value="9:00AM">9:00AM</option> -->
+                 <%if(noTimeSlotsG){%>
+                    <h4 id="noTimeSlots">Timeslots are not available</h4>
+                    <script>
+                      document.addEventListener('DOMContentLoaded',()=>{
+                        uData1 = JSON.parse(sessionStorage.getItem('userDataGPage'));
+
+                          document.getElementById('fname').value = uData1.fName;
+                          document.getElementById('lname').value = uData1.lName;
+                          document.getElementById('dob').value = uData1.Dob;
+                          document.getElementById('house_no').value = uData1.houseNo;
+                          document.getElementById('street_name').value = uData1.streetName;
+                          document.getElementById('city').value = uData1.City;
+                          document.getElementById('province').value = uData1.Province;
+                          document.getElementById('postal').value = uData1.Postal;
+
+                          // Car details
+                          document.getElementById('make').value = uData1.Make;
+                          document.getElementById('model').value = uData1.Model;
+                          document.getElementById('year').value = uData1.Year;
+                          document.getElementById('plate_num').value = uData1.PlateNum;
+                          document.getElementById('license_no').value = uData1.LicenseNo;
+
+                          // Set focus on error message
+                          document.getElementById('userSelectedDateGPage').focus();
+                      });
+                      
+                    </script>
+                 <%}%>
+
+                 <%if(timeSlotsG){%>
+                    <%if(timeSlotsG.length==0){%>
+                      <h4 id="noTimeSlots">Timeslot is already booked</h4>
+                      <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                        
+                          uData2 = JSON.parse(sessionStorage.getItem('userDataGPage'));
+                          document.getElementById('fname').value = uData2.fName;
+                          document.getElementById('lname').value = uData2.lName;
+                          document.getElementById('dob').value = uData2.Dob;
+                          document.getElementById('house_no').value = uData2.houseNo;
+                          document.getElementById('street_name').value = uData2.streetName;
+                          document.getElementById('city').value = uData2.City;
+                          document.getElementById('province').value = uData2.Province;
+                          document.getElementById('postal').value = uData2.Postal;
+
+                          // Car details
+                          document.getElementById('make').value = uData2.Make;
+                          document.getElementById('model').value = uData2.Model;
+                          document.getElementById('year').value = uData2.Year;
+                          document.getElementById('plate_num').value = uData2.PlateNum;
+                          document.getElementById('license_no').value = uData2.LicenseNo;
+                          // Set focus on TimeSlots
+                          document.getElementById('userSelectedDateGPage').focus();
+                        });
+                      </script>
+                    <%}else {%>
+                          <script>
+                            document.addEventListener('DOMContentLoaded',()=>{
+                              if(document.getElementById("noTimeSlots")){
+                                document.getElementById("noTimeSlots").style.display = "none";
+                              }
+                              uData3 = JSON.parse(sessionStorage.getItem('userSelectedDateGPage'));
+                              document.getElementById('fname').value = uData3.fName;
+                              document.getElementById('lname').value = uData3.lName;
+                              document.getElementById('dob').value = uData3.Dob;
+                              document.getElementById('house_no').value = uData3.houseNo;
+                              document.getElementById('street_name').value = uData3.streetName;
+                              document.getElementById('city').value = uData3.City;
+                              document.getElementById('province').value = uData3.Province;
+                              document.getElementById('postal').value = uData3.Postal;
+
+                              // Car details
+                              document.getElementById('make').value = uData3.Make;
+                              document.getElementById('model').value = uData3.Model;
+                              document.getElementById('year').value = uData3.Year;
+                              document.getElementById('plate_num').value = uData3.PlateNum;
+                              document.getElementById('license_no').value = uData3.LicenseNo;
+                              // Set focus on TimeSlots
+                              document.getElementById('userSelectedDateGPage').focus();
+                            });
+                          </script>
+                          <label for="userSelectedTimeG">Please select time: </label>
+                          <select id="userSelectedTimeG" name="userSelectedTimeG">
+                            <%for(let i=0;i<timeSlotsG.length;i++){%>
+                              <option value="<%=timeSlotsG[i]%>"><%=timeSlotsG[i]%></option>
+                            <%}%>
+                          </select>
+                    <%}%>
+                  <%}%>
+            </div>
+            <h3 class="g2_form_heading">Enter your personal details</h3>
+              <!-- Fetching user's details from database -->
+                <!-- G Form Data -->
+                  <!-- First Name -->
+                  <label for="fname"><b>Firstname</b></label>
+                  <input type="text" placeholder="Enter first name" name="fname" id="fname" 
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.FirstName %>">
+                  <% } %>
+                  <!-- Last Name -->
+                  <label for="lname"><b>Lastname</b></label>
+                  <input type="text" placeholder="Enter last name" name="lname" id="lname" 
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.LastName %>">
+                  <% } %>
+
+                  <!-- DOB -->
+                  <label for="dob"><b>Date of Birth</b></label>
+                  <input type="date" name="dob" placeholder="Enter your Date of Birth" id="dob"
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.DOB %>">
+                  <% } %>
+
+                  <!-- Address details -->
+                  <!-- House Number -->
+                  <lable for="house_no"><b>House No</b></lable>
+                  <input type="number" name="house_no" id="house_no" placeholder="Enter house no"
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.HouseNumber %>">
+                  <% } %>
+
+                  <!-- Street name -->
+                  <lable for="street_name"><b>Street name</b></lable>
+                  <input type="text" name="street_name" id="street_name" placeholder="Enter street name"  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.StreetName %>">
+                  <% } %>
+
+                  <!-- City -->
+                  <lable for="city"><b>City</b></lable>
+                  <input type="text" name="city" id="city" placeholder="Enter city" 
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.City %>">
+                  <% } %>
+
+                  <!-- Province -->
+                  <lable for="province"><b>Select your Province/State</b></lable>
+                  <select name="province" id="province">
+                    <% if(getUserG !== undefined) { %>
+                      <option value="<%=getUserG.Province %>" selected><%=getUserG.Province %></option>
+                    <% } %>
+                    <option value="Ontario" selected>Ontario</option>
+                    <option value="Alberta">Alberta</option>
+                    <option value="British Columbia">British Columbia</option>
+                    <option value="Manitoba">Manitoba</option>
+                    <option value="Nova Scotia">Nova Scotia</option>
+                    <option value="Saskatchewan">Saskatchewan</option>
+                  </select>
+
+                  <!-- Postal Code -->
+                  <lable for="postal"><b>Postal Codes</b></lable>
+                  <input type="text" name="postal" id="postal" placeholder="Enter postal code"
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.Postal%>">
+                  <% } %>
+
+                  <!-- Car Details -->
+                  <h3 class="g2_form_heading">Enter your car details</h3>
+
+                  <!-- Make/Brand -->
+                  <lable for="make"><b>Make/Brand</b></lable>
+                  <input type="text" name="make" id="make" placeholder="Enter the brand of your car" 
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.Brand%>">
+                  <% } %>
+
+                  <!-- Model -->
+                  <lable for="model"><b>Model</b></lable>
+                  <input type="text" name="model" id="model" placeholder="Enter the model of your car"
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.Model%>">
+                  <% } %>
+
+                  <!-- Year -->
+                  <lable for="year"><b>Year</b></lable>
+                  <input type="number" name="year" id="year" placeholder="Specify year" 
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.Year%>">
+                  <% } %>
+
+                  <!-- Plate number -->
+                  <lable for="plate_num"><b>Plate number</b></lable>
+                  <input type="text" name="plate_num" id="plate_num" placeholder="Enter the plate no. of your car" 
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.PlateNumber%>">
+                  <% } %>
+
+                  <!-- User ID -->
+                  <label for="license_no"><b>Driver's License No.</b></label>
+                  <input type="text" placeholder="Enter license no." id="license_no" name="license_no"
+                  <% if(getUserG !== undefined) { %>
+                    value="<%=getUserG.LicenceNumber%>">
+                  <% } %>
+
+              
+              <button type="submit" id="submit_btn_g2">Submit</button>
+           </form>
+           <%}%>
+          <% } %>
+          <% } %>
+        </main>
+        <!-- Footer goes here -->
+        <%-include('layouts/footer')-%>
+  </div>
+  <!-- External Javascript Goes Here -->
+  <%-include('layouts/javascript')-%>
+</body>
+
+</html>

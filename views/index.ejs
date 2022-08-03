@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- External CSS Goes Here -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="wrapper">
+        <!-- Header goes here -->
+        <%-include('layouts/header')-%>
+        <!-- Navigation goes here -->
+        <%-include('layouts/navbar')-%>
+
+        <!-- Main Content Goes Here -->
+        <main>
+            <!-- Banner Image -->
+            <section id="banner">
+                <img src="assets/img/Main_Banner.jpg" alt="banner" id="main_image" class="general_image">
+            </section>
+
+            <!-- Welcome message -->
+            <h2 id="welcome_msg" class="message">Welcome to Ontario Drive Test</h2>
+
+        </main>
+
+        <!-- Footer goes here -->
+       <%-include('layouts/footer')-%>
+    </div>
+
+   <!-- External Javascript Goes Here -->
+   <%-include('layouts/javascript')-%>
+</body>
+</html>
