@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.set('view engine', 'ejs');
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(process.env.PORT || 3000, () => {
     console.log(`The server is listening on port no: ${port}`);
 });
