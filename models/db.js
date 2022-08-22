@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 // Enter here your connection string
-mongoose.connect('mongodb+srv://dbuser:dbuser@cluster0.fzasn.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://admin:V2hPpaIL13hCsNa2@cluster0.tzrwn4j.mongodb.net/?retryWrites=true&w=majorit');
 
 mongoose.connection.on("connected", function(){
     console.log("Application is connected to Database");
